@@ -1,3 +1,5 @@
+![Cartographie du Processus SAP](IMG_0472.jpeg)
+
 # 🌐 Cartographie des Processus SAP S/4HANA & Logistique
 
 Ce document synthétise les grands flux transactionnels modélisés sous l'ERP SAP S/4HANA pour piloter la Supply Chain et la gestion des approvisionnements.
