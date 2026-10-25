@@ -32,6 +32,6 @@ Créé par MPETI BOKATOLA Michée Christ Merveille
 ---
 
 ### Voir :
-* 📄 [Cartographie Processus et Documentation SAP](https://github.com/Merveille318/Supply-Chain-SQL-Portfolio-/blob/...)
-* 🚀 [Mon Portfolio Complet sur Notion](https://app.notion.com/p/SQL-Supply-Chain-...)
-* 🔗 [Lien court de secours](https://tinyurl.com/Merveille-SC)
+* 📄 [Cartographie Processus SAP S/4HANA](https://tinyurl.com/SAP-Flux)
+* 💻 [Requêtes SQL & Cas Pratiques](https://tinyurl.com/SQL-Sc)
+* 🚀 [Mon Portfolio Complet sur Notion](https://tinyurl.com/Merveille-SC)
