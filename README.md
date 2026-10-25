@@ -22,7 +22,7 @@ Compétences & Outils mobilisés
 
 * Concepts : Logique conditionnelle, jointures complexes, agrégations, analyse temporelle.
 
-Créé par Mepeti Bokatola Michée Christ Merveille 
+Créé par MPETI BOKATOLA Michée Christ Merveille 
 
 ### Contact :
 * **Email** : m.c.merveillem@gmail.com
@@ -32,6 +32,6 @@ Créé par Mepeti Bokatola Michée Christ Merveille
 ---
 
 ### Voir :
-* [Cartographie Processus SAP S/4HANA](#) *(mets ici le lien vers ta section Notion ou doc)*
-* [Requêtes SQL - Top produits, Coûts fournisseurs, OTIF](#) *(mets le lien vers ton dossier queries)*
-* [https://tinyurl.com/Merveille-SC](#)
+* [https://github.com/Merveille318/Supply-Chain-SQL-Portfolio-/blob/81f8b6329cdb34a619a8876d80e4cbafd29f062f/docs/IMG_0472.jpeg](#) *
+* [https://app.notion.com/p/SQL-Supply-Chain-4005b47a39fa80ce90e1c9bcacb6c789?pvs=25](#) *
+* [https://tinyurl.com/Merveille-SC](#)*
