@@ -20,6 +20,18 @@ Compétences & Outils mobilisés
 
 * Domaine Métier : Supply Chain, Achats (MM), Gestion d'entrepôt (WMS)
 
-* Concepts : Requêtes imbriquées, jointures complexes, agrégations, analyse temporelle.
+* Concepts : Logique conditionnelle, jointures complexes, agrégations, analyse temporelle.
 
 Créé par Mepeti Bokatola Michée Christ Merveille 
+
+### Contact :
+* **Email** : m.c.merveillem@gmail.com
+* **WhatsApp** : +242 06 186 54 23
+* **LinkedIn** : Merveille MPETI
+
+---
+
+### Voir :
+* [Cartographie Processus SAP S/4HANA](#) *(mets ici le lien vers ta section Notion ou doc)*
+* [Requêtes SQL - Top produits, Coûts fournisseurs, OTIF](#) *(mets le lien vers ton dossier queries)*
+* [https://tinyurl.com/Merveille-SC](#)
