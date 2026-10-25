@@ -32,8 +32,6 @@ Créé par MPETI BOKATOLA Michée Christ Merveille
 ---
 
 ### Voir :
-
-### Voir :
 * 📄 [Cartographie Processus et Documentation SAP](https://github.com/Merveille318/Supply-Chain-SQL-Portfolio-/blob/...)
 * 🚀 [Mon Portfolio Complet sur Notion](https://app.notion.com/p/SQL-Supply-Chain-...)
 * 🔗 [Lien court de secours](https://tinyurl.com/Merveille-SC)
