@@ -1,4 +1,4 @@
-Supply-Chain-SQL-Portfolio 
+💻 Supply-Chain-SQL-Portfolio 
 
 Portfolio de requêtes SQL appliquées à la Supply Chain (SAP MM/WMS). Ce dépôt regroupe des cas pratiques d'analyse de données logistiques, de gestion des stocks et d'optimisation des flux d'achats.
 
@@ -21,6 +21,24 @@ Compétences & Outils mobilisés
 * Domaine Métier : Supply Chain, Achats (MM), Gestion d'entrepôt (WMS)
 
 * Concepts : Logique conditionnelle, jointures complexes, agrégations, analyse temporelle.
+
+* ## 🏗️ Modèle de Données & Tables de la Supply Chain
+
+Voici la structure relationnelle de la base de données utilisée pour les analyses :
+
+* `fournisseurs` : `fournisseur_id`, `nom`, `pays`
+* `articles` : `article_id`, `libelle_article`, `famille`, `prix_unitaire`, `stock_securite`
+* `stocks` : `stock_id`, `article_id`, `entrepot`, `quantite_en_stock`
+* `commandes_achats` : `commande_id`, `fournisseur_id`, `article_id`, `quantite_commandee`, `date_commande`, `statut`
+* `livraisons` : `livraisons_id`, `commande_id`, `date_reception_effective`, `quantite_recue`, `statut_qualite`
+
+---
+
+## 📦 Sommaire des Modules
+* [Module 1 : Fondamentaux et Filtrage Opérationnel (Exercices 1 à 5)](#module-1--fondamentaux-et-filtrage-opérationnel)
+* [Module 2 : Agrégations, Analyses Financières et Groupements (Exercices 6 à 9)](#module-2--agrégations-analyses-financières-et-groupements)
+* [Module 3 : Jointures Multi-tables et Logique Métier Avancée (Exercices 10 à 14)](#module-3--jointures-multi-tables-et-logique-métier-avancée)
+* [Module 4 : Intelligence Temporelle, Délais et Traçabilité Globale (Exercices 15 à 21)](#module-4--intelligence-temporelle-délais-et-traçabilité-globale)
 
 Créé par MPETI BOKATOLA Michée Christ Merveille 
 
