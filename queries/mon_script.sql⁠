@@ -76,3 +76,12 @@ SELECT
     ) AS taux_respect_delais_pourcent
 FROM commandes_fournisseurs
 WHERE statut = 'Livre';
+
+## 🛠️ Module 1 : Fondamentaux et Filtrage Opérationnel
+
+### **Exercice 1 : Extraction brute du catalogue articles**
+* **Objectif Métier :** Lister l'ensemble des références de la base pour un audit initial du catalogue.
+```sql
+SELECT * FROM articles;
+
+
