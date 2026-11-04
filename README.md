@@ -40,7 +40,16 @@ Voici la structure relationnelle de la base de données utilisée pour les analy
 * [Module 3 : Jointures Multi-tables et Logique Métier Avancée (Exercices 10 à 14)](#module-3--jointures-multi-tables-et-logique-métier-avancée)
 * [Module 4 : Intelligence Temporelle, Délais et Traçabilité Globale (Exercices 15 à 21)](#module-4--intelligence-temporelle-délais-et-traçabilité-globale)
 
-Créé par MPETI BOKATOLA Michée Christ Merveille 
+Créé par MPETI BOKATOLA Michée Christ Merveille   
+
+## 🛠️ Module 1 : Fondamentaux et Filtrage Opérationnel
+
+### **Exercice 1 : Extraction brute du catalogue articles**
+* **Objectif Métier :** Lister l'ensemble des références de la base pour un audit initial du catalogue.
+```sql
+SELECT * FROM articles;
+
+---
 
 ### Contact :
 * **Email** : m.c.merveillem@gmail.com
