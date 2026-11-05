@@ -4,6 +4,7 @@
 -- =========================================================================
 
 -- Exercice 1 : Valorisation financière du stock par entrepôt
+
 SELECT 
     s.entrepot_id,
     SUM(s.quantite_stock * p.prix_unitaire) AS valeur_totale_stock
@@ -11,7 +12,9 @@ FROM stocks s
 INNER JOIN produits p ON s.produit_id = p.produit_id
 GROUP BY s.entrepot_id;
 
+
 -- Exercice 2 : Détection des risques de rupture de stock
+
 SELECT 
     p.produit_id,
     p.libelle_article,
@@ -25,7 +28,9 @@ SELECT
 FROM produits p
 INNER JOIN stocks s ON p.produit_id = s.produit_id;
 
+
 -- Exercice 3 : Suivi des commandes en cours ou livrées
+
 SELECT 
     commande_id,
     fournisseur_id,
@@ -36,7 +41,9 @@ FROM commandes_fournisseurs
 WHERE statut IN ('En_cours', 'Livre')
 ORDER BY date_commande DESC;
 
+
 -- Exercice 4 : Analyse de la performance fournisseurs (Lead Time & Retards)
+
 SELECT 
     commande_id,
     fournisseur_id,
@@ -47,7 +54,9 @@ FROM commandes_fournisseurs
 WHERE date_reception_reelle IS NOT NULL
   AND date_reception_reelle > date_reception_prevue;
 
+
 -- Exercice 5 : Top 5 des produits les plus commandés en volume
+
 SELECT 
     p.libelle_article,
     SUM(c.quantite_commandee) AS total_commande
@@ -57,7 +66,9 @@ GROUP BY p.libelle_article
 ORDER BY total_commande DESC
 LIMIT 5;
 
+
 -- Exercice 6 : Calcul de la part des coûts d'achats par fournisseur
+
 SELECT 
     f.nom_fournisseur,
     SUM(c.quantite_commandee * p.prix_unitaire) AS montant_total_achats
@@ -67,7 +78,9 @@ INNER JOIN produits p ON c.produit_id = p.produit_id
 GROUP BY f.nom_fournisseur
 ORDER BY montant_total_achats DESC;
 
+
 -- Exercice 7 : Évaluation du taux de service global (OTIF simplifié)
+
 SELECT 
     COUNT(*) AS total_commandes,
     SUM(CASE WHEN date_reception_reelle <= date_reception_prevue THEN 1 ELSE 0 END) AS commandes_a_temps,
@@ -76,6 +89,7 @@ SELECT
     ) AS taux_respect_delais_pourcent
 FROM commandes_fournisseurs
 WHERE statut = 'Livre';
+
 
 -- =====================================================================
 -- PORTFOLIO : SUPPLY CHAIN DATA ANALYTICS - 21 EXERCICES SQL COMPLETS
