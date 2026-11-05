@@ -42,13 +42,6 @@ Voici la structure relationnelle de la base de données utilisée pour les analy
 
 Créé par MPETI BOKATOLA Michée Christ Merveille   
 
-## 🛠️ Module 1 : Fondamentaux et Filtrage Opérationnel
-
-### **Exercice 1 : Extraction brute du catalogue articles**
-* **Objectif Métier :** Lister l'ensemble des références de la base pour un audit initial du catalogue.
-```sql
-SELECT * FROM articles;
-
 ---
 
 ### Contact :
