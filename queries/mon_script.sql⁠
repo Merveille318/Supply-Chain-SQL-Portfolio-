@@ -77,11 +77,201 @@ SELECT
 FROM commandes_fournisseurs
 WHERE statut = 'Livre';
 
-## 🛠️ Module 1 : Fondamentaux et Filtrage Opérationnel
+-- =====================================================================
+-- PORTFOLIO : SUPPLY CHAIN DATA ANALYTICS - 21 EXERCICES SQL COMPLETS
+-- Auteur : MPETI BOKATOLA Michée Christ Merveille
+-- =====================================================================
 
-### **Exercice 1 : Extraction brute du catalogue articles**
-* **Objectif Métier :** Lister l'ensemble des références de la base pour un audit initial du catalogue.
-```sql
+
+-- Exercice 1 : Extraction brute du catalogue articles
+
 SELECT * FROM articles;
 
+
+-- Exercice 2 : Filtrage des stocks critiques par entrepôt
+
+SELECT s.stock_id, a.article_id, a.libelle_article, s.entrepot, s.quantite_en_stock 
+FROM stocks s 
+INNER JOIN articles a ON s.article_id = a.article_id 
+WHERE quantite_en_stock > 500;
+
+
+-- Exercice 3 : Valorisation financière de l'immobilisation en stock
+
+SELECT s.stock_id, a.article_id, a.libelle_article, 
+       s.quantite_en_stock * a.prix_unitaire AS valeur_total_immobilise 
+FROM stocks s
+INNER JOIN articles a ON s.article_id = a.article_id;
+
+
+-- Exercice 4 : Ciblage par liste de valeurs spécifiques (IN)
+
+SELECT stock_id, article_id, entrepot 
+FROM stocks 
+WHERE quantite_en_stock IN (10, 100);
+
+
+-- Exercice 5 : Recherche textuelle par motif (LIKE)
+
+SELECT * 
+FROM articles 
+WHERE libelle_article LIKE '%San%';
+
+
+-- Exercice 6 : Consolidation des volumes par entrepôt (GROUP BY)
+
+SELECT stock_id, article_id, entrepot, 
+       SUM(quantite_en_stock) AS total_stock 
+FROM stocks 
+GROUP BY entrepot;
+
+
+-- Exercice 7 : Calcul du prix moyen par famille de produits
+
+SELECT a.article_id, a.libelle_article, famille, 
+       AVG(a.prix_unitaire) AS prix_moyen_famille 
+FROM articles a 
+GROUP BY famille;
+
+
+-- Exercice 8 : Identification des bornes tarifaires du catalogue
+
+SELECT MAX(prix_unitaire) AS prix_max, 
+       MIN(prix_unitaire) AS prix_bas 
+FROM articles;
+
+
+-- Exercice 9 : Filtrage sur agrégat des fournisseurs majeurs (HAVING)
+
+SELECT f.fournisseur_id, f.nom, f.pays, 
+       SUM(c.quantite_commandee) AS 'total_quantite_commandee'
+FROM fournisseur f
+INNER JOIN commandes_achats c ON f.fournisseur_id = c.fournisseur_id
+GROUP BY f.fournisseur_id, f.nom, f.pays
+HAVING SUM(c.quantite_commandee) > 500;
+
+
+-- Exercice 10 : Rapprochement simple articles / stocks
+
+SELECT a.article_id, a.libelle_article, a.famille, s.quantite_en_stock 
+FROM articles a 
+INNER JOIN stocks s ON a.article_id = s.article_id;
+
+
+-- Exercice 11 : Traçabilité descendante en cascade (LEFT JOIN)
+
+SELECT f.fournisseur_id, c.commande_id, s.quantite_en_stock, a.article_id, a.libelle_article 
+FROM fournisseur f
+LEFT JOIN commandes_achats c ON f.fournisseur_id = c.fournisseur_id
+LEFT JOIN stocks s ON c.article_id = s.article_id
+LEFT JOIN articles a ON s.article_id = a.article_id;
+
+
+-- Exercice 12 : Vue panoramique 360° du cycle d'achat et de réception
+
+SELECT f.fournisseur_id, f.nom, c.commande_id, c.article_id, a.libelle_article, 
+       a.famille, s.quantite_en_stock, l.livraison_id, l.date_reception_effective, 
+       l.quantite_recue, l.statut_qualite
+FROM fournisseur f
+INNER JOIN commandes_achats c ON f.fournisseur_id = c.fournisseur_id
+INNER JOIN articles a ON c.article_id = a.article_id
+INNER JOIN stocks s ON a.article_id = s.article_id
+INNER JOIN livraisons l ON c.commande_id = l.commande_id;
+
+
+-- Exercice 13 : Qualification dynamique du niveau de stock (CASE WHEN)
+
+SELECT s.stock_id, s.quantite_en_stock, a.article_id, a.libelle_article, 
+       a.famille, a.stock_securite,
+       CASE 
+           WHEN s.quantite_en_stock < a.stock_securite THEN 'rupture'
+           WHEN s.quantite_en_stock > a.stock_securite THEN 'normal'
+           ELSE 'erreur'
+       END AS 'qualification dynamique du stock'
+FROM stocks s 
+INNER JOIN articles a ON s.article_id = a.article_id;
+
+
+-- Exercice 14 : Audit des écarts de livraison et gestion des valeurs nulles
+
+SELECT c.commande_id, c.article_id, 
+       (c.quantite_commandee - l.quantite_recue) AS ecart,
+       COALESCE(
+           CASE WHEN (c.quantite_commandee - l.quantite_recue) < 0 THEN 'valeur negative' END,
+           CAST(c.quantite_commandee - l.quantite_recue AS CHAR)
+       ) AS 'ecart final'
+FROM commandes_achats c
+INNER JOIN livraisons l ON c.commande_id = l.commande_id;
+
+
+-- Exercice 15 : Contrôle des retards de livraison en temps réel (CURRENT_DATE)
+
+SELECT L.livraison_id, L.date_reception_effective, C.commande_id, 
+       A.article_id, A.libelle_article, A.famille
+FROM livraisons L
+INNER JOIN commandes_achats C ON L.commande_id = C.commande_id
+INNER JOIN articles A ON C.article_id = A.article_id
+WHERE date_reception_effective < current_date;
+
+
+-- Exercice 16 : Calcul effectif du Lead Time fournisseur (DATEDIFF / julianday)
+
+SELECT c.commande_id, c.article_id, c.date_commande, 
+       l.livraison_id, l.date_reception_effective,
+       CAST(julianday(l.date_reception_effective) - julianday(c.date_commande) AS INTEGER) AS delais_jours
+FROM commandes_achats c
+INNER JOIN livraisons l ON c.commande_id = l.commande_id;
+
+
+-- Exercice 17 : Simulation de date limite de livraison (DATE_ADD)
+
+SELECT a.article_id, a.libelle_article, c.commande_id, 
+       l.livraison_id, l.date_reception_effective,
+       date(l.date_reception_effective, '+10 days') AS 'delais_livraison_repousse'
+FROM articles a
+INNER JOIN commandes_achats c ON a.article_id = c.article_id 
+INNER JOIN livraisons l ON c.commande_id = l.commande_id;
+
+
+-- Exercice 18 : Analyse de la saisonnalité des achats par mois (EXTRACT / strftime)
+
+SELECT strftime('%Y', c.date_commande) AS annee,
+       strftime('%m', c.date_commande) AS mois,
+       SUM(c.quantite_commandee * a.prix_unitaire) AS totale_valeur_commandee
+FROM articles a
+INNER JOIN commandes_achats c ON a.article_id = c.article_id
+GROUP BY annee, mois
+ORDER BY annee, mois;
+
+
+-- Exercice 19 : Classification dynamique du volume des commandes (CASE WHEN)
+
+SELECT a.article_id, a.libelle_article, a.famille, c.quantite_commandee,
+       CASE
+           WHEN c.quantite_commandee > 1000 THEN 'gros_volume'
+           WHEN c.quantite_commandee = 700 THEN 'standard'
+           ELSE 'volume_mediocre'
+       END AS 'volume'
+FROM articles a 
+INNER JOIN commandes_achats c ON a.article_id = c.article_id;
+
+
+-- Exercice 20 : Analyse croisée des commandes et des articles associés
+
+SELECT c.commande_id, c.fournisseur_id, c.quantite_commandee, c.date_commande, c.statut,
+       a.article_id, a.libelle_article, a.famille
+FROM commandes_achats c
+INNER JOIN articles a ON c.article_id = a.article_id;
+
+
+-- Exercice 21 : Reporting de traçabilité logistique globale multi-tables finale
+
+SELECT c.commande_id, c.fournisseur_id, c.quantite_commandee, c.date_commande, c.statut,
+       a.article_id, a.libelle_article, a.famille,
+       s.stock_id, s.entrepot, s.quantite_en_stock,
+       l.livraison_id, l.date_reception_effective, l.quantite_recue, l.statut_qualite
+FROM commandes_achats c
+INNER JOIN articles a ON c.article_id = a.article_id
+INNER JOIN stocks s ON a.article_id = s.article_id
+INNER JOIN livraisons l ON c.commande_id = l.commande_id;
 
